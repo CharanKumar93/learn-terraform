@@ -9,7 +9,7 @@ output "ami" {
 }
 
 data "aws_instance" "foo" {
-   instance_id  "i-0ffb18a6dc7901e7e"
+   instance_id = "i-0ffb18a6dc7901e7e"
 }
 
 output "instance" {
