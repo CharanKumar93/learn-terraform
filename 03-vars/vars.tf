@@ -64,7 +64,7 @@ output "demo1" {
 
 ## Variables from Shell env variables
 variable "demo2" {
-  default - "null"
+  default = null
 }
 output "demo2" {
    value = var.demo2
