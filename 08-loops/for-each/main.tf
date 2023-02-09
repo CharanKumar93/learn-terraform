@@ -8,10 +8,11 @@ resource "aws_instance" "web" {
   }
 }
 
+
 data "aws_ami" "centos8" {
-  most_recent      = true
-  name_regex       = "Centos-8-DevOps-Practice"
-  owners           = ["973714476881"]
+  most_recent = true
+  name_regex  = "Centos-8-DevOps-Practice"
+  owners      = ["973714476881"]
 }
 
 
@@ -29,12 +30,12 @@ output "publicip" {
 variable "components" {
   default = {
     cart = {
-      name       = "cart",
+      name          = "cart",
       instance_type = "t3.small"
     }
     catalogue = {
-         name       = "catalogue",
-         instance_type = "t3.micro"
+      name          = "catalogue",
+      instance_type = "t3.micro"
     }
- }
+  }
 }
