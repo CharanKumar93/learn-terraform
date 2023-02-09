@@ -12,3 +12,7 @@ data "aws_ami" "centos8" {
   name_regex       = "Centos-8-DevOps-Practice"
   owners           = ["973714476881"]
 }
+
+output "instance_profile" {
+  value = aws_instance.web.outpost_arn
+}
