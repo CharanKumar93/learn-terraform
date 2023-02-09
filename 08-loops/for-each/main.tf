@@ -22,7 +22,7 @@ output "publicip" {
   # with count
 
   value = {
-    for k, v in aws_instance.web : k => v.id
+    for k, v in aws_instance.web : k => v.public_ip
   }
 }
 
