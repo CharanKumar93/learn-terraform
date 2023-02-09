@@ -20,7 +20,7 @@ output "publicip" {
   #value = aws_instance.web.public_ip
 
   # with count
-  value = aws_instance.web["cart"].public_ip
+  value = aws_instance.web
 }
 
 variable "components" {
