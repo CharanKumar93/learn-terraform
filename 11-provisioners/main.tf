@@ -1,11 +1,11 @@
 provider "aws" {
-region = "us-east-1"
+  region = "us-east-1"
 }
 
 data "aws_ami" "centos8" {
-  most_recent      = true
-  name_regex       = "Centos-8-DevOps-Practice"
-  owners           = ["973714476881"]
+  most_recent = true
+  name_regex  = "Centos-8-DevOps-Practice"
+  owners      = ["973714476881"]
 }
 
 resource "aws_instance" "web" {
@@ -14,11 +14,18 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tags = {
-    Name = "test-centos8"
+    Name        = "web"
+    environment = "DEV"
   }
+
 }
 
 resource "null_resource" "provision" {
+
+  triggers = {
+    instance_id = aws_instance.web.id
+  }
+
   provisioner "remote-exec" {
     connection {
       host     = aws_instance.web.public_ip
@@ -27,7 +34,7 @@ resource "null_resource" "provision" {
     }
 
     inline = [
-      "echo Hello"
+      "echo Helo"
     ]
   }
 }
@@ -37,11 +44,11 @@ resource "aws_security_group" "allow_tls" {
   description = "Allow TLS inbound traffic"
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "TLS from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
