@@ -14,6 +14,6 @@ data "aws_ami" "centos8" {
   owners      = ["973714476881"]
 }
 
-varaible "type" {
+variable "type" {
   default = "null"
 }
